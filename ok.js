@@ -14,8 +14,8 @@ const l=()=>{
     }catch(e){console.error(e.message);process.exit(1);}
 };l();
 
-const bot=new TelegramBot(t,{polling:!0}),L={slot:1,concurrent:2,maxTime:120};
-const h=`📜 Hướng dẫn:\n<code>https://site.com 120</code>\n⚠️ Tối đa: ${L.maxTime}s\nAdmin: <code>/pkill</code>, <code>/on</code>, <code>/off</code>\nCONTACT SUPPORT: @adam022022 @NeganSSHConsole`;
+const bot=new TelegramBot(t,{polling:!0}),L={slot:1,concurrent:2,maxTime:60};
+const h=`📜 Hướng dẫn:\n<code>https://site.com 60</code>\n⚠️ Tối đa: ${L.maxTime}s\nAdmin: <code>/pkill</code>, <code>/on</code>, <code>/off</code>\nCONTACT SUPPORT: @adam022022 @NeganSSHConsole`;
 
 // Hàm đếm số attack của user
 const d=u=>[...x.values()].filter(v=>v.u===u).length;
