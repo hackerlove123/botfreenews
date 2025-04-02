@@ -15,7 +15,7 @@ tep_tam=$(mktemp)
 tong=0
 
 # Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5
-for loai in socks4 socks5; do 
+for loai in http; do 
   lien_ket="https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/$loai.txt"
   
   # Tải về và xử lý định dạng (đảm bảo mỗi proxy 1 dòng)
