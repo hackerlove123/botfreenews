@@ -18,12 +18,14 @@ export NODE_OPTIONS=--max-old-space-size=8192
 # Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5
 for loai in http https socks4 socks5; do 
   lien_ket="https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/$loai.txt"
-  so_luong=$(curl -s "$lien_ket" | tee -a "$tep_tam" | wc -l)
+  # Thêm dấu xuống dòng sau mỗi proxy và loại bỏ các khoảng trắng thừa
+  so_luong=$(curl -s "$lien_ket" | sed 's/\r//g' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+' | tee -a "$tep_tam" | wc -l)
   echo "$loai: $so_luong proxy"
   ((tong+=so_luong))
 done
 
 echo "Tổng trước lọc: $tong"
+# Sắp xếp và loại bỏ trùng lặp, đảm bảo mỗi proxy trên 1 dòng
 sort -u "$tep_tam" -o live.txt
 echo "Tổng sau lọc: $(wc -l < live.txt) | IP duy nhất: $(awk -F: '{print $1}' live.txt | sort -u | wc -l)"
 rm -f "$tep_tam"
