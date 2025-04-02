@@ -16,7 +16,7 @@ tong=0
 export NODE_OPTIONS=--max-old-space-size=8192
 
 # Lấy proxy từ các loại HTTP, HTTPS, SOCKS4, SOCKS5
-for loai in http socks4 socks5; do 
+for loai in socks4 socks5; do 
   lien_ket="https://raw.githubusercontent.com/neganok/NGCSLPRX/refs/heads/main/Proxies/$loai.txt"
   # Thêm dấu xuống dòng sau mỗi proxy và loại bỏ các khoảng trắng thừa
   so_luong=$(curl -s "$lien_ket" | sed 's/\r//g' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]+' | tee -a "$tep_tam" | wc -l)
