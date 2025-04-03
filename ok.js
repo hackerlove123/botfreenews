@@ -14,7 +14,7 @@ const l=()=>{
     }catch(e){console.error(e.message);process.exit(1);}
 };l();
 
-const bot=new TelegramBot(t,{polling:!0}),L={slot:1,concurrent:2,maxTime:60};
+const bot=new TelegramBot(t,{polling:!0}),L={slot:1,concurrent:2,maxTime:60}; // ✅ DUY NHẤT 1 DÒNG maxTime
 const h=`📜 Hướng dẫn:\n<code>https://site.com 60</code>\n⚠️ Tối đa: ${L.maxTime}s\nAdmin: <code>/pkill</code>, <code>/on</code>, <code>/off</code>\nCONTACT SUPPORT: @adam022022 @NeganSSHConsole`;
 
 // Hàm đếm số attack của user
@@ -32,7 +32,7 @@ bot.on('message',msg=>{
         const [h,t]=text.split(' ');
         if(!h||isNaN(t))return bot.sendMessage(c,'🚫 Sai định dạng: <code>https://site.com 60</code>',{parse_mode:'HTML'});
         if(b.some(b=>h.includes(b)))return bot.sendMessage(c,'❌ URL bị chặn',{parse_mode:'HTML'});
-        const du=Math.min(parseInt(t),ad?L.maxTime:60);
+        const du=Math.min(parseInt(t),ad?L.maxTime:L.maxTime); // ✅ Đã sửa thành L.maxTime thay vì 60
         if(d(u)>=L.slot)return bot.sendMessage(c,`❌ Giới hạn ${L.slot} tiến trình`,{parse_mode:'HTML'});
         if(x.size>=L.concurrent){q.push({u,h,t:du,c,cl});return bot.sendMessage(c,'⏳ Đang chờ...',{parse_mode:'HTML'});}
 
