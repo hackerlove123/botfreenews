@@ -30,9 +30,9 @@ bot.on('message',msg=>{
     if(text.startsWith('http')){
         if(!y)return bot.sendMessage(c,'❌ Bot đang tắt',{parse_mode:'HTML'});
         const [h,t]=text.split(' ');
-        if(!h||isNaN(t))return bot.sendMessage(c,'🚫 Sai định dạng: <code>https://site.com 120</code>',{parse_mode:'HTML'});
+        if(!h||isNaN(t))return bot.sendMessage(c,'🚫 Sai định dạng: <code>https://site.com 60</code>',{parse_mode:'HTML'});
         if(b.some(b=>h.includes(b)))return bot.sendMessage(c,'❌ URL bị chặn',{parse_mode:'HTML'});
-        const du=Math.min(parseInt(t),ad?L.maxTime:120);
+        const du=Math.min(parseInt(t),ad?L.maxTime:60);
         if(d(u)>=L.slot)return bot.sendMessage(c,`❌ Giới hạn ${L.slot} tiến trình`,{parse_mode:'HTML'});
         if(x.size>=L.concurrent){q.push({u,h,t:du,c,cl});return bot.sendMessage(c,'⏳ Đang chờ...',{parse_mode:'HTML'});}
 
